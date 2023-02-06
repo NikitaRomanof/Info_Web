@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="~{tmp/header :: header}"></header>
+<div class="container mt-5">
+  <h1 th:text="${title}"></h1>
+</div>
+
+
+<div class="container mt-5">
+  <li class="nav-link active">
+    <a class="nav-link active" aria-current="page" href="/procedure/4">Procedure №4</a>
+    <a class="nav-link active" aria-current="page" href="/procedure/5">Procedure №5</a>
+    <a class="nav-link active" aria-current="page" href="/procedure/6">Procedure №6</a>
+    <a class="nav-link active" aria-current="page" href="/procedure/7">Procedure №7</a>
+    <a class="nav-link active" aria-current="page" href="/procedure/8">Procedure №8</a>
+    <a class="nav-link active" aria-current="page" href="/procedure/procedure9">Procedure №9</a>
+    <a class="nav-link active" aria-current="page" href="/procedure/10">Procedure №10</a>
+    <a class="nav-link active" aria-current="page" href="/procedure/procedure11">Procedure №11</a>
+    <a class="nav-link active" aria-current="page" href="/procedure/procedure12">Procedure №12</a>
+    <a class="nav-link active" aria-current="page" href="/procedure/13">Procedure №13</a>
+    <a class="nav-link active" aria-current="page" href="/procedure/14">Procedure №14</a>
+    <a class="nav-link active" aria-current="page" href="/procedure/procedure15">Procedure №15</a>
+  </li>
+
+</div>
+
+<div th:insert="~{tmp/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Обновить таблицу</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <header th:insert="~{tmp/header :: header}"></header>
+    <meta charset="UTF-8">
+    <title>Обновить таблицу</title>
+</head>
+
+<body>
+<div>
+    <h1>Обновить таблицу</h1>
+
+    <form method="POST" th:action="@{/checks/update}" th:object="${checkForm}">
+        <input type="hidden" th:value="${check.id}" name="id">
+        <div class="mb-3">
+            <label for="peer" class="form-label">Peer</label>
+            <input th:value="${check.peer}" name="peer" type="text" class="form-control" id="peer">
+        </div>
+
+        <div class="mb-3">
+            <label for="task" class="form-label">Задание</label>
+            <input th:value="${check.task}" name="task" type="text" class="form-control" id="task">
+        </div>
+
+        <div class="mb-3">
+            <label for="date" class="form-label">Дата</label>
+            <input th:value="${check.date}" name="date" type="text" class="form-control" id="date">
+        </div>
+
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editDialog">Обновить</button>
+        <div th:insert="~{tmp/editDialog :: editDialog}"></div>
+
+    </form>
+
+</div>
+
+<div th:insert="~{tmp/modalScript :: modalScript}"></div>
+</body>
+</html>

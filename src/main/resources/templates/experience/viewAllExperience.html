@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title> Опыт </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <header th:insert="~{tmp/header :: header}"></header>
+</head>
+<body>
+
+
+<div class="container mt-5">
+  <h1> Опыт </h1>
+</div>
+
+<div class="row">
+  <div class="col">
+    <a
+            href="experience/add"
+            class="btn btn-primary"
+            role="button"
+            style="float: left"
+            aria-disabled="true">Добавить запись в таблицу</a>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th> id </th>
+    <th> id проверки </th>
+    <th> Опыт </th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="exp : ${experience}">
+    <td th:text="${exp.id}"></td>
+    <td th:text="${exp.checkId}"></td>
+    <td th:text="${exp.amount}"></td>
+
+        <td>
+
+
+          <button style="float: right" class="btn btn-danger ms-1" data-toggle="modal" data-target="#deleteDialog">Удалить</button>
+          <a style="float: right" class="btn btn-warning" th:href="'/experience/update/' + ${exp.id}">Обновить</a>
+
+          <div class="modal fade" id="deleteDialog" tabindex="-1" role="dialog" aria-labelledby="deleteDialogLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteDialogLabel">Удаление данных из таблицы</h5>
+                </div>
+                <div class="modal-body">Удалить данные?</div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <a class="btn btn-danger ms-1" th:href="'/experience/delete/' + ${exp.id}">Удалить</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+  </tr>
+  </tbody>
+</table>
+
+<div th:insert="~{tmp/footer :: footer}"></div>
+<div th:insert="~{tmp/modalScript :: modalScript}"></div>
+</body>
+</html>
