@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Пиры </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <header th:insert="~{tmp/header :: header}"></header>
+</head>
+<body>
+<div>
+    <h1>Добавить запись в таблицу Пиры</h1>
+
+    <form method="POST" th:action="@{/peer/add}" th:object="${modelForm}">
+
+        <div class="mb-3">
+            <label for="nickname" class="form-label"> Имя </label>
+            <input name="nickname" type="text" class="form-control" id="nickname" required="required">
+        </div>
+
+        <div class="mb-3">
+            <label for="birthday" class="form-label"> День рождения </label>
+            <input name="birthday" type="date" class="form-control" id="birthday"
+                   value="2000-01-01" min="1900-01-01" max="2010-12-31" required="required">
+        </div>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDialog">Добавить</button>
+        <div th:insert="~{tmp/addDialog :: addDialog}"></div>
+    </form>
+</div>
+
+<div th:insert="~{tmp/modalScript :: modalScript}"></div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Рекомендации </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <header th:insert="~{tmp/header :: header}"></header>
+    <meta charset="UTF-8">
+    <title>Обновить Рекомендации</title>
+</head>
+
+<body>
+<div>
+    <h1>Обновить</h1>
+
+    <form method="POST" th:action="@{/recommendation/update}" th:object="${modelForm}">
+        <input required="required" type="hidden" th:value="${recommendation.id}" name="id">
+        <div class="mb-3">
+            <label for="peer" class="form-label"> Пир </label>
+            <select th:value="${recommendation.peer}" name="peer" class="form-select" id="peer" required="required">
+                <option th:each="nickname : ${peers}" th:value="${nickname}" th:text="${nickname}"
+                        th:selected="${recommendation.peer == nickname}"/>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="recommendedPeer" class="form-label">Рекомендуемый пир</label>
+            <select th:value="${recommendation.recommendedPeer}" name="recommendedPeer" class="form-select"
+                    id="recommendedPeer" required="required">
+                <option th:each="nickname : ${peers}" th:value="${nickname}" th:text="${nickname}"
+                        th:selected="${recommendation.recommendedPeer == nickname}"/>
+            </select>
+        </div>
+
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editDialog">Обновить</button>
+        <div th:insert="~{tmp/editDialog :: editDialog}"></div>
+    </form>
+</div>
+
+<div th:insert="~{tmp/modalScript :: modalScript}"></div>
+</body>
+</html>

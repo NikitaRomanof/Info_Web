@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Обновить таблицу</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <header th:insert="~{tmp/header :: header}"></header>
+    <meta charset="UTF-8">
+    <title>Обновить таблицу</title>
+</head>
+
+<body>
+<div>
+    <h1>Обновить таблицу</h1>
+
+    <form method="POST" th:action="@{/checks/update}" th:object="${modelForm}">
+        <input required="required" type="hidden" th:value="${checks.id}" name="id">
+        <div class="mb-3">
+            <label for="peer" class="form-label">Peer</label>
+            <select th:value="${checks.peer}" name="peer" class="form-select" id="peer" required="required">
+                <option th:each="nickname : ${peers}" th:value="${nickname}" th:text="${nickname}"
+                        th:selected="${checks.peer == nickname}"/>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="task" class="form-label">Задание</label>
+            <select th:value="${checks.task}" name="task" class="form-select" id="task" required="required">
+                <option th:each="title : ${tasks}" th:value="${title}" th:text="${title}"
+                        th:selected="${checks.task == title}"/>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="date" class="form-label">Дата</label>
+            <input th:value="${checks.date}" name="date" type="date" required="required"
+                   class="form-control" id="date"
+                   value="2022-12-22" min="2019-12-22" max="2023-01-01"/>
+        </div>
+
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editDialog">Обновить</button>
+        <div th:insert="~{tmp/editDialog :: editDialog}"></div>
+
+    </form>
+
+</div>
+
+<div th:insert="~{tmp/modalScript :: modalScript}"></div>
+</body>
+</html>

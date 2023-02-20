@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Обновить таблицу</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <header th:insert="~{tmp/header :: header}"></header>
+    <meta charset="UTF-8">
+    <title>Обновить таблицу</title>
+</head>
+
+<body>
+<div>
+    <h1>Обновить таблицу</h1>
+
+    <form method="POST" th:action="@{/peerToPeer/update}" th:object="${modelForm}">
+        <input required="required" type="hidden" th:value="${peerToPeer.id}" name="id">
+        <div class="mb-3">
+            <label for="checkId" class="form-label">Id проверки</label>
+            <select th:value="${peerToPeer.checkId}" name="checkId" class="form-select" id="checkId"
+                    required="required">
+                <option th:each="id : ${checkIds}" th:value="${id}" th:text="${id}"
+                        th:selected="${peerToPeer.checkId == id}"/>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="checkingPeer" class="form-label">Проверяющий пир</label>
+            <select th:value="${peerToPeer.checkingPeer}" name="checkingPeer" class="form-select" id="checkingPeer"
+                    required="required">
+                <option th:each="nickname : ${peers}" th:value="${nickname}" th:text="${nickname}"
+                        th:selected="${peerToPeer.checkingPeer == nickname}"/>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="status" class="form-label">Статус проверки</label>
+            <select th:value="${peerToPeer.status}" id="status" name="status" class="form-select">
+                <option>Start</option>
+                <option>Success</option>
+                <option>Failure</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="time" class="form-label">Время проверки</label>
+            <input required="required" th:value="${peerToPeer.time}" name="time" type="text" class="form-control"
+                   id="time">
+        </div>
+
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editDialog">Обновить</button>
+        <div th:insert="~{tmp/editDialog :: editDialog}"></div>
+    </form>
+</div>
+
+<div th:insert="~{tmp/modalScript :: modalScript}"></div>
+</body>
+</html>

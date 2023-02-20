@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Результат запроса </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <header th:insert="~{tmp/header :: header}"></header>
+</head>
+<body>
+
+<div class="container mt-5">
+    <p></p>
+    <div th:if="${result.isEmpty()}">
+        <h2>Запрос выполнен. Результатов нет</h2>
+    </div>
+    <div th:unless="${result.isEmpty()}">
+        <h2> Результат запроса</h2>
+    </div>
+    <p></p>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <div th:each="element : ${result}">
+            <th th:text="${element.key}"></th>
+        </div>
+    </tr>
+    </thead>
+    <tbody>
+    <td th:each="element : ${result}">
+        <table>
+            <tr th:each="anews : ${element.value}">
+                <td th:text="${anews}"></td>
+            </tr>
+        </table>
+    </td>
+    </tbody>
+</table>
+<div th:if="not ${result.isEmpty()}">
+    <form method="GET" action="/procedure/unload" enctype="multipart/form-data">
+        <input required = "required" class="btn btn-primary" type="submit" value="Скачать таблицу в формате csv">
+    </form>
+</div>
+
+</body>
+</html>
